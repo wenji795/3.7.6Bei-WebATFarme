@@ -4,6 +4,7 @@ import time
 import allure
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from utils.keywords_utils import kw_step
 
@@ -78,4 +79,78 @@ class Keywords:
             f"第{step['step_num']}步_{now_time}.png",
             allure.attachment_type.PNG
         )
+
+    # ================== 浏览器基本操作 ==================
+    @kw_step
+    def refresh(self, step):
+        """刷新当前页面"""
+        self.driver.refresh()
+
+    @kw_step
+    def back(self, step):
+        """浏览器后退"""
+        self.driver.back()
+
+    @kw_step
+    def forward(self, step):
+        """浏览器前进"""
+        self.driver.forward()
+
+    @kw_step
+    def switch_to_window(self, step):
+        """ 根据窗口句柄索引切换窗口"""
+        handlers = self.driver.window_handles
+        # handlers[step["data"]]  根据索引取句柄
+        self.driver.switch_to_window(handlers[step["data"]])
+
+    # ================== 下拉框操作 ==================
+    @kw_step
+    def select_by_text(self, step):
+        """
+        通过可见文本选择下拉框选项
+        step['data']：要选择的文本
+        """
+        element = self.find(step)
+        Select(element).select_by_visible_text(str(step["data"]))
+
+    @kw_step
+    def select_by_value(self, step):
+        """
+        通过 value 值选择下拉框选项
+        step['data']：option 的 value
+        """
+        element = self.find(step)
+        Select(element).select_by_value(str(step["data"]))
+
+    # ================== 弹出框操作（alert） ==================
+    @kw_step
+    def alert_accept(self, step):
+        """接受 alert 弹窗"""
+        alert = self.driver.switch_to.alert
+        alert.accept()
+
+    @kw_step
+    def alert_dismiss(self, step):
+        """取消 / 关闭 alert 弹窗"""
+        alert = self.driver.switch_to.alert
+        alert.dismiss()
+
+    # ================== 滚动条 & JS 操作 ==================
+    @kw_step
+    def scroll_to(self, step):
+        """
+        滚动到某个绝对坐标位置
+        step['data'] 数据要写成 {'x': 100, 'y': 100} 的形式
+        """
+        # 这里 eval() 函数是把字符串转换成字典
+        position_dict = eval(step["data"])
+
+        js = f"window.scrollTo({position_dict['x']}, {position_dict['y']});"
+        self.driver.execute_script(js)
+
+    @kw_step
+    def execute_js(self, step):
+        self.driver.execute_script(step['data'])
+
+
 
