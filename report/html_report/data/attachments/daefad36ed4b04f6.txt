@@ -1,0 +1,20 @@
+INFO     WDM:logger.py:11 ====== WebDriver manager ======
+INFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome
+INFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome
+INFO     WDM:logger.py:11 Driver [/Users/swj_795/.wdm/drivers/chromedriver/mac64/142.0.7444.162/chromedriver-mac-arm64/chromedriver] found in cache
+INFO     webatf:driver_utils.py:31 ✅ 启动 Chrome 浏览器成功
+INFO     root:test_runner.py:44 正在执行步骤: 1 - 关键字: open - 名称: 打开网址
+INFO     root:keywords_utils.py:19 第1步: 打开网址 - 元素(None, None) - 数据(file:///Users/swj_795/Desktop/%E5%8C%97%E6%A2%A6%E6%B5%8B/pagetest/%E6%B3%A8%E5%86%8C%E5%AE%9E%E4%BE%8B.html) - 索引(None)
+INFO     root:test_runner.py:44 正在执行步骤: 2 - 关键字: assert_url - 名称: 断言网址
+INFO     root:keywords_utils.py:19 第2步: 断言网址 - 元素(None, None) - 数据(pagetest) - 索引(None)
+INFO     root:assert_keyworks.py:14 ✅ 当前URL: file:///Users/swj_795/Desktop/%E5%8C%97%E6%A2%A6%E6%B5%8B/pagetest/%E6%B3%A8%E5%86%8C%E5%AE%9E%E4%BE%8B.html 包含 预期URL: pagetest
+INFO     root:test_runner.py:44 正在执行步骤: 3 - 关键字: assert_title - 名称: 断言title
+INFO     root:keywords_utils.py:19 第3步: 断言title - 元素(None, None) - 数据(注册A) - 索引(None)
+INFO     root:test_runner.py:44 正在执行步骤: 4 - 关键字: input - 名称: 断言用户名
+INFO     root:keywords_utils.py:19 第4步: 断言用户名 - 元素(xpath, //input) - 数据(admin) - 索引(None)
+INFO     root:test_runner.py:44 正在执行步骤: 5 - 关键字: assert_element_exist - 名称: 断言元素存在
+INFO     root:keywords_utils.py:19 第5步: 断言元素存在 - 元素(xpath, //a[.='新浪']) - 数据(None) - 索引(None)
+INFO     root:assert_keyworks.py:41 ✅ 元素存在 <selenium.webdriver.remote.webelement.WebElement (session="f2e026ab58c23b1c3100217679b86849", element="f.238190A6EE05AB8A17DC9EE223FE5851.d.9D884FC15BBFEC36EF6F0A182DB1D5D6.e.22")>
+INFO     root:test_runner.py:44 正在执行步骤: 6 - 关键字: assert_text - 名称: 断言text
+INFO     root:keywords_utils.py:19 第6步: 断言text - 元素(xpath, //a[.='新浪']) - 数据(新浪) - 索引(None)
+INFO     root:test_runner.py:44 正在执行步骤: 9 - 关键字: shotttttt - 名称: 截图

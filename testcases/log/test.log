@@ -1,0 +1,2 @@
+2025-31-10/14/25 20:31:36 INFO 用例ID：login_1 模块：登录 场景：登录成功 标题：账号密码正确登录成功 39
+2025-31-10/14/25 20:31:42 INFO 步骤: {'step_num': 1, 'step_name': '输入用户名', 'keyword': 'input', 'by': 'xpath', 'value': '//input', 'data': 'admin', 'index': 0} 49
