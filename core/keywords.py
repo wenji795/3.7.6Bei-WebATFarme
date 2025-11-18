@@ -3,6 +3,7 @@ import logging
 import time
 import allure
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
@@ -153,4 +154,41 @@ class Keywords:
         self.driver.execute_script(step['data'])
 
 
+    # ================== 鼠标 & 键盘常用交互 ==================
+    @kw_step
+    def double_click(self, step):
+        """双击"""
+        element = self.find(step)
+        action = ActionChains(self.driver)#初始化一个“鼠标动作链”对象，把浏览器驱动 driver 传进去，之后的鼠标操作都要通过它来执行
+        action.double_click(element).perform()
 
+    @kw_step
+    def right_click(self, step):
+        """右击"""
+        element = self.find(step)
+        action = ActionChains(self.driver)
+        action.context_click(element).perform()
+
+    @kw_step
+    def hover(self, step):
+        """悬停"""
+        element = self.find(step)
+        action = ActionChains(self.driver)
+        action.move_to_element(element).perform()
+
+    @kw_step
+    def drag_and_drop(self, step):
+        source = self.find(step)
+        """拖拽
+        step['data'] 数据要写成 {'by': xpath, 'value': 'xxx'} 的形式"""
+        # 这里 eval() 函数是把字符串转换成字典
+        target_dict = eval(step["data"])
+        target = self.driver.find_element(target_dict["by"], target_dict["value"])
+        action = ActionChains(self.driver)
+        action.drag_and_drop(source, target).perform()
+
+    @kw_step
+    def enter(self, step):
+        """回车"""
+        element = self.find(step)
+        element.send_keys(Keys.ENTER)
