@@ -1,5 +1,6 @@
 #keywords.py
 import logging
+import os.path
 import time
 import allure
 from selenium.common.exceptions import TimeoutException
@@ -192,3 +193,25 @@ class Keywords:
         """回车"""
         element = self.find(step)
         element.send_keys(Keys.ENTER)
+
+    @kw_step
+    def upload_file(self, step):
+        """文件上传(原生文件)
+        把文件放在根目录下file文件夹里，data中放相对路径"""
+        relative_path = step["data"]
+        absolute_path = os.path.abspath(relative_path)
+
+        element = self.find(step)
+        element.send_keys(absolute_path)
+
+    # ================== frame操作 ==================
+    @kw_step
+    def switch_to_frame(self, step):
+        """根据frame元素把焦点切换回某个frame"""
+        element = self.find(step)
+        self.driver.switch_to.frame(element)
+
+    @kw_step
+    def switch_to_default_content(self, step):
+        """把焦点切回主文档"""
+        self.driver.switch_to.default_content()
